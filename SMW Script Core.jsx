@@ -1,4 +1,13 @@
-//CONSTANTS
+//Setup
+var scriptPath = '\"' + File.decode(app.path) + "/Presets/Scripts" +'\"'
+var repoPath = '\"' + File.decode(app.path) + "/Presets/Scripts/SMWscripts" +'\"'
+app.system('cd ' + scriptPath + '\ngit clone https://github.com/w0llay/SMWscripts.git')
+app.system('cd ' + repoPath + '\ngit init\ngit fetch origin\ngit reset --hard origin/main')
+var SMWsettings = new File(File.decode(app.path) + "/Presets/Scripts/SMWsettings.csv")
+if(!SMWsettings.exists){
+    app.system('cd ' + scriptPath + '\ntouch SMWsettings.csv')
+}
+
 stagingPath = "/Volumes/willr drive/SMW Local/Smartwool Staging"
 
 //FUNCTIONS

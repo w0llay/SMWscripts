@@ -1,4 +1,4 @@
-#include "/Applications/Adobe Photoshop 2024/Presets/Scripts/Smartwool/SMW Script Core.jsx"
+#include "/Applications/Adobe Photoshop 2024/Presets/Scripts/SMWscripts/SMW Script Core.jsx"
 
 //var mainList = CSVtoArray(new File("/Volumes/Titan/SMWBase Alpha Drive Dupe/Smartwool Fall 24/20240422 Pickups/S24_AppAcc_missing metadata_422.csv"))
 //var modelList = CSVtoArray(new File("/Volumes/willr drive/SMW Local/SMW240369 S25/Apparel and Accessories/Metadata/S25 Model List.csv"))

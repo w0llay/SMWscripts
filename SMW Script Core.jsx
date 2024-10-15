@@ -759,3 +759,59 @@ function copyNoReplace(file, location){
     }
     file.copy(copyName)
 }
+
+function getSetting(key){
+    var ret
+    settingsArray = CSVtoArray(SMWsettings)
+    for(var i = 0; i < settingsArray.length; i++){
+        if(SMWsettings[i][0]==key){
+            ret = SMWsettings[i][1]
+        }
+    }
+    return(ret)
+}
+
+function putSetting(key, value){
+    var newKey = true
+    settingsArray = CSVtoArray(SMWsettings)
+    for(var i = 0; i < settingsArray.length; i++){
+        if(SMWsettings[i][0]==key){
+            SMWsettings[i][1] = value
+            newKey = false
+        }
+    }
+    if(newKey){
+        settingsArray.push([key, value])
+    }
+
+    arrayToCSV(SMWsettings, settingsArray)
+}
+
+function arrayToCSV(file, array){
+    var DELIMETER = ',';
+    var NEWLINE = '\n';
+    var QUOTE = '\"';
+    var string = ""
+    if(typeof file == String){
+        file = new File(file)
+    }
+    file.open("w");
+    for(var i = 0; i < array.length; i++){
+        for(var q = 0; q < array[i].length; q++){
+            if(array[i][q].indexOf(DELIMETER)>=0||array[i][q].indexOf(NEWLINE)>=0||array[i][q].indexOf(QUOTE)>=0){
+                string+= QUOTE + array[i][q] + QUOTE
+            }
+            else{
+                string+= array[i][q]
+            }
+            if(q < array[i].length-1){
+                string+= DELIMETER
+            }
+            else if(i < array.length-1){
+                string+= NEWLINE
+            }
+        }
+    }
+    file.write(string)
+    file.close()
+}

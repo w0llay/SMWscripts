@@ -791,12 +791,12 @@ function arrayToCSV(CSVfile, arr){
     var DELIMETER = ',';
     var NEWLINE = '\n';
     var QUOTE = '\"';
+    var str = ""
     if(typeof CSVfile == String){
         CSVfile = new File(CSVfile)
     }
     CSVfile.open("w");
     for(var i = 0; i < arr.length; i++){
-        var str = ""
         for(var q = 0; q < arr[i].length; q++){
             if(arr[i][q].indexOf(DELIMETER)>=0||arr[i][q].indexOf(NEWLINE)>=0||arr[i][q].indexOf(QUOTE)>=0){
                 str+= QUOTE + arr[i][q] + QUOTE
@@ -808,9 +808,10 @@ function arrayToCSV(CSVfile, arr){
                 str+= DELIMETER
             }
             else if(i < arr.length-1){
-                CSVfile.writeln(str)
+                str+= NEWLINE
             }
         }
     }
+    CSVfile.write(str)
     CSVfile.close()
 }

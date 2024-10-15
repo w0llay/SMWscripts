@@ -775,8 +775,8 @@ function putSetting(key, value){
     var newKey = true
     settingsArray = CSVtoArray(SMWsettings)
     for(var i = 0; i < settingsArray.length; i++){
-        if(SMWsettings[i][0]==key){
-            SMWsettings[i][1] = value
+        if(settingsArray[i][0]==key){
+            settingsArray[i][1] = value
             newKey = false
         }
     }

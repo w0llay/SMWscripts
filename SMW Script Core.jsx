@@ -1,16 +1,19 @@
 //Setup
 var scriptPath = '\"' + File.decode(app.path) + "/Presets/Scripts" +'\"'
 var repoPath = '\"' + File.decode(app.path) + "/Presets/Scripts/SMWscripts" +'\"'
-app.system('cd ' + scriptPath + '\ngit clone https://github.com/w0llay/SMWscripts.git')
-app.system('cd ' + repoPath + '\ngit init\ngit fetch origin\ngit reset --hard origin/main')
-var SMWsettings = new File(File.decode(app.path) + "/Presets/Scripts/SMWsettings.csv")
-if(!SMWsettings.exists){
-    app.system('cd ' + scriptPath + '\ntouch SMWsettings.csv')
-}
 
 stagingPath = "/Volumes/willr drive/SMW Local/Smartwool Staging"
 
 //FUNCTIONS
+
+function updateSMWscripts(){
+    app.system('cd ' + scriptPath + '\ngit clone https://github.com/w0llay/SMWscripts.git')
+    app.system('cd ' + repoPath + '\ngit init\ngit fetch origin\ngit reset --hard origin/main')
+    var SMWsettings = new File(File.decode(app.path) + "/Presets/Scripts/SMWsettings.csv")
+    if(!SMWsettings.exists){
+        app.system('cd ' + scriptPath + '\ntouch SMWsettings.csv')
+    }
+}
 function getShotNum(name){
     var shotNum = "NULL FILE";
     for(var i = 0; i < name.length; i++){
@@ -783,8 +786,9 @@ function putSetting(key, value){
     if(newKey){
         settingsArray.push([key, value])
     }
+    alert(settingsArray)
 
-    arrayToCSV(SMWsettings, settingsArray)
+    arrayToCSV(new File("/Applications/Adobe Photoshop 2025/Presets/Scripts/SMWscripts/SMWsettings.csv"), settingsArray)
 }
 
 function arrayToCSV(CSVfile, arr){
@@ -792,10 +796,6 @@ function arrayToCSV(CSVfile, arr){
     var NEWLINE = '\n';
     var QUOTE = '\"';
     var str = ""
-    if(typeof CSVfile == String){
-        CSVfile = new File(CSVfile)
-    }
-    CSVfile.open("w");
     for(var i = 0; i < arr.length; i++){
         for(var q = 0; q < arr[i].length; q++){
             if(arr[i][q].indexOf(DELIMETER)>=0||arr[i][q].indexOf(NEWLINE)>=0||arr[i][q].indexOf(QUOTE)>=0){
@@ -812,6 +812,7 @@ function arrayToCSV(CSVfile, arr){
             }
         }
     }
+    CSVfile.open("w");
     CSVfile.write(str)
     CSVfile.close()
 }

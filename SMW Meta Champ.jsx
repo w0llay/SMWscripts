@@ -1,7 +1,7 @@
-#include "/Applications/Adobe Photoshop 2024/Presets/Scripts/SMWscripts/SMW Script Core.jsx"
+#include "/Applications/Adobe Photoshop 2025/Presets/Scripts/SMWscripts/SMW Script Core.jsx"
 
 //var mainList = CSVtoArray(new File("/Volumes/Titan/SMWBase Alpha Drive Dupe/Smartwool Fall 24/20240422 Pickups/S24_AppAcc_missing metadata_422.csv"))
-//var modelList = CSVtoArray(new File("/Volumes/willr drive/SMW Local/SMW240369 S25/Apparel and Accessories/Metadata/S25 Model List.csv"))
+var modelList = CSVtoArray(new File("/Volumes/willr drive/SMW Local/SMW240369 S25/Apparel and Accessories/Metadata/S25 Model List.csv"))
 
 // var sockList = CSVtoArray(new File("/Volumes/Titan/SMWBase Alpha Drive Dupe/Smartwool Fall 24/Metadata/F24_Socks_metadata.csv"))
 
@@ -69,8 +69,8 @@ for (var i = 0; i < fileList.length;i++){
                 keywords = mainList[q][6]
                 title = mainList[q][7]
                 rightsUsageTerms = mainList[q][8]
-                additionalModelInfo = /*mainList[q][10]*/"global, internet (includes web) and social media, no paid social media, no OOH or broadcast"
-                //modelReleaseIdentifier = mainList[q][11]
+                additionalModelInfo = mainList[q][10]//"global, internet (includes web) and social media, no paid social media, no OOH or broadcast"
+                modelReleaseIdentifier = mainList[q][11]
                 changed = true;
             }
         }

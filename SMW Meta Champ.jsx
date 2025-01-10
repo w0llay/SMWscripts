@@ -60,9 +60,9 @@ if(mainFile != null && mainFile.name.indexOf(".csv">=0)){
         if(modelFile != null && modelFile.name.indexOf(".csv">=0)){
             var modelList = CSVtoArray(modelFile)
             for(var q = 0; q < modelList.length; q++){
-                if(modelList[q][0].indexOf(getSmwItem(fileName))>=0){
-                    var modelB = String(modelList[q][1])
-                    var modelC = String(modelList[q][2])
+                if(modelList[q][1].indexOf(getSmwItem(fileName))>=0){
+                    var modelB = String(modelList[q][4])
+                    var modelC = String(modelList[q][5])
                     if(modelB==modelC&&modelB.length>0){
                         personShown = modelB;
                     }
@@ -83,7 +83,7 @@ if(mainFile != null && mainFile.name.indexOf(".csv">=0)){
             }
         }
         if(changed){
-            setMetadata(fileList[i], false, creator, headline, description, altText, extendedDescription, keywords, title, rightsUsageTerms, personShown, additionalModelInfo, modelReleaseIdentifier)
+            setMetadata(fileList[i], true, creator, headline, description, altText, extendedDescription, keywords, title, rightsUsageTerms, personShown, additionalModelInfo, modelReleaseIdentifier)
         }
     }
    
